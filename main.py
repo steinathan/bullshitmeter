@@ -1,10 +1,7 @@
 import streamlit as st
-from PIL import Image
 
 from bs_service import BSService, BSServiceConfig
 
-
-image = Image.open("./asset/bs_meter.webp")
 
 st.title("Bullshit meter!")
 
@@ -14,9 +11,11 @@ st.markdown("""
 """)
 
 st.image(
-    image, caption="The Bullshit Meter - Gauge your content!", width=200, clamp=True
+    "https://raw.githubusercontent.com/steinathan/bullshitmeter/main/asset/bs_meter.webp",
+    caption="The Bullshit Meter - Gauge your content!",
+    width=200,
+    clamp=True,
 )
-
 
 st.markdown(
     """
@@ -36,7 +35,9 @@ with st.expander("Advanced Model Configuration"):
         "This is powered by LiteLLM, you can change the model and API key if you have a custom model like Ollama & OpenAI, see: https://docs.litellm.ai/docs/#basic-usage"
     )
 
-    model = st.text_input("Model", value="deepseek/deepseek-chat")
+    model = st.text_input(
+        "Model", placeholder="ollama/deepseek-r1", value="ollama/deepseek-r1"
+    )
     api_key = st.text_input(
         "API Key",
         value="xxxxxxxxxxxxxxx",
@@ -49,11 +50,6 @@ tab1, tab2 = st.tabs(["Text", "URL"])
 
 with tab1:
     text_input = st.text_area("Paste your text here:")
-
-    if text_input:
-        total_chars = len(text_input)
-        total_words = len(text_input.split())
-
 
 with tab2:
     st.warning(
@@ -69,7 +65,7 @@ if st.button("Calculate Bullshit", key="1"):
     if not text_or_url:
         st.warning("Please enter some text or url")
     else:
-        with st.spinner("Calculating bullshit..."):
+        with st.spinner("Thinking.. "):
             output = service.calculate_bullshit(text_or_url)
 
         st.markdown(f"### **Bullshit Score**: **{output.score}/10**")
@@ -80,6 +76,9 @@ if st.button("Calculate Bullshit", key="1"):
             st.warning("Moderate Bullshit! ⚠️")
         else:
             st.error("High Bullshit! 🚨")
+
+        with st.expander("Show thought"):
+            st.write(f"**Thought**: {output.thought}")  # type: ignore
 
         st.write(f"**Explanation**: {output.explanation}")
 

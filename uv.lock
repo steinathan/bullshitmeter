@@ -152,6 +152,7 @@ dependencies = [
     { name = "langchain-community" },
     { name = "langchain-core" },
     { name = "litellm" },
+    { name = "pillow" },
     { name = "pytest" },
     { name = "streamlit" },
 ]
@@ -163,6 +164,7 @@ requires-dist = [
     { name = "langchain-community", specifier = ">=0.3.15" },
     { name = "langchain-core", specifier = ">=0.3.31" },
     { name = "litellm", specifier = ">=1.59.3" },
+    { name = "pillow", specifier = ">=11.1.0" },
     { name = "pytest", specifier = ">=8.3.4" },
     { name = "streamlit", specifier = ">=1.41.1" },
 ]

@@ -8,6 +8,8 @@ from urllib.parse import urlparse
 from langchain_community.document_loaders import WebBaseLoader
 import logging
 
+from pydantic_thought_parser import PydanticThoughtParser
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -26,10 +28,14 @@ class BSLLMOutput(BaseModel):
         description="A detailed thoughtful explanation of why you think its 'bullshit'",
     )
 
+    class Config:
+        extra = "allow"
+
 
 class BSServiceConfig(BaseModel):
-    model: str = "deepseek/deepseek-chat"
+    model: str = "ollama/deepseek-r1"
     api_key: str | None = None
+    api_base: str | None = ""
 
 
 class BSService:
@@ -38,6 +44,7 @@ class BSService:
         self.model = ChatLiteLLM(
             model=self.config.model,
             api_key=self.config.api_key,
+            api_base=self.config.api_base,
         )
 
     def scrape_url(self, url, n_docs=5) -> str:
@@ -83,11 +90,10 @@ Your analysis should leave no room for doubt—whether you're validating a rare 
 """
         user_prompt = "{text}"
 
-        parser = PydanticOutputParser(pydantic_object=BSLLMOutput)
+        parser = PydanticThoughtParser(pydantic_object=BSLLMOutput)
         prompt = ChatPromptTemplate(
             [("system", system_prompt), ("user", user_prompt)]
         ).partial(format_instructions=parser.get_format_instructions())
-        
 
         chain = prompt | self.model | parser
 

@@ -2,6 +2,12 @@
 
 Welcome to the **Bullshit Meter**! This tool is designed to help you measure the amount of corporate jargon and fluff in your text. Whether you're drafting a business proposal or discussing the latest tech trends, this meter will help you identify how much of it is just hot air! 🌪️🔥
 
+## Demo Video
+
+Check out our demo video to see the **Bullshit Meter** in action:
+
+[![Watch the video](https://raw.githubusercontent.com/steinathan/bullshitmeter/main/asset/preview.png)](https://raw.githubusercontent.com/steinathan/bullshitmeter/main/asset/bullshit_hero.mp4)
+
 ## Features
 
 - **Text Analysis**: Paste your text and get an instant bullshit score.
@@ -32,7 +38,11 @@ streamlit run main.py
 
 ## Support
 
-If you find this tool useful, consider [buying me a coffee](https://buymeacoffee.com/navicstein).
+If you find this tool useful or funny, consider [buying me a coffee](https://buymeacoffee.com/navicstein).
+
+<a href="https://buymeacoffee.com/navicstein" target="_blank">
+    <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=navicstein&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" alt="Buy me a coffee">
+</a>
 
 ## License
 
