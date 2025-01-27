@@ -1,0 +1,15 @@
+[project]
+name = "bullshit-meter"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.12.3",
+    "langchain>=0.3.15",
+    "langchain-community>=0.3.15",
+    "langchain-core>=0.3.31",
+    "litellm>=1.59.3",
+    "pytest>=8.3.4",
+    "streamlit>=1.41.1",
+]
